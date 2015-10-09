@@ -38,8 +38,12 @@ You have to load the products first to get the correctly internationalized name 
 ```javascript
 var WebkitLocalStorageReader = require('NativeModules').WebkitLocalStorageReader;
 WebkitLocalStorageReader.get((jsonString) => {
-    var jsonObj = JSON.parse(jsonString);
-    console.log(jsonObj);
+    if(jsonString) {
+        var jsonObj = JSON.parse(jsonString);
+        console.log(jsonObj);
+    } else {
+        console.log("No localstorage database file found.");
+    }
 });
 ```
 

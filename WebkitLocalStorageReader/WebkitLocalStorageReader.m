@@ -87,6 +87,9 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
         jsonStringMaster = [jsonStringMaster stringByAppendingString:@"}"];
         jsonStringMaster = [@"{" stringByAppendingString:jsonStringMaster];
         callback(@[jsonStringMaster]);
+    } else {
+        NSLog(@"Could not find a localstorage database.  Make sure this was installed over an existing version of a cordova/phonegap app otherwise there will be no database file to read.");
+        callback(@[[NSNull null]]);
     }
 }
 

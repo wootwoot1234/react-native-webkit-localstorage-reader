@@ -1,0 +1,49 @@
+{
+  "name": "react-native-webkit-localstorage-reader",
+  "version": "1.0.0",
+  "description": "A react-native wrapper for reading existing localstorage created by apps built with cordova/phonegap.",
+  "author": {
+    "name": "Tom Krones",
+    "email": "tkrones@gmail.com",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wootwoot1234/react-native-webkit-localstorage-reader.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "ios",
+    "webkit",
+    "locastorage",
+    "sqlite"
+  ],
+  "gitHead": "f7adee47723d63dc89ad8c34140de31d1213cb50",
+  "bugs": {
+    "url": "https://github.com/wootwoot1234/react-native-webkit-localstorage-reader/issues"
+  },
+  "homepage": "https://github.com/wootwoot1234/react-native-webkit-localstorage-reader#readme",
+  "_id": "react-native-module@2.1.0",
+  "scripts": {},
+  "_shasum": "9a6ad1fe0bf8755ecff1ece1de81ce78a79c0d48",
+  "_from": "react-native-module@*",
+  "_npmVersion": "2.14.2",
+  "_nodeVersion": "4.0.0",
+  "_npmUser": {
+    "name": "wootwoot1234",
+    "email": "tkrones@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "wootwoot1234",
+      "email": "tkrones@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "9a6ad1fe0bf8755ecff1ece1de81ce78a79c0d48",
+    "tarball": "http://registry.npmjs.org/react-native-module/-/react-native-module-2.1.0.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/react-native-module/-/react-native-module-2.1.0.tgz"
+}

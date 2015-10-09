@@ -12,7 +12,7 @@ A react-native wrapper for reading existing localstorage created by apps built w
 
 2. Open your project in XCode, right click on `Libraries`, click `Add Files to "Your Project Name"` and add `WebkitLocalStorageReader.xcodeproj`. (situated in `node_modules/react-native-webkit-localstorage-reader`) [(This](http://url.brentvatne.ca/jQp8) then [this](http://url.brentvatne.ca/1gqUD), just with WebkitLocalStorageReader).
 
-3. Link `libWebkitLocalStorageReader.a` with your Libraries. To do that, click on your project folder, select `Build Phases` in the top bar, scroll to `Link Binary with Libraries`, press the `+` at the very bottom and add `libWebkitLocalStorageReader.a` from the `node_modules/react-native-webkit-localstorage-reader/WebkitLocalStorageReader` folder. [(Screenshot)](http://url.brentvatne.ca/17Xfe).
+3. Link `libWebkitLocalStorageReader.a` and `libsqlite3.tbd` with your Libraries. To do that, click on your project folder, select `Build Phases` in the top bar, scroll to `Link Binary with Libraries`, press the `+` at the very bottom and add `libWebkitLocalStorageReader.a` from the `node_modules/react-native-webkit-localstorage-reader/WebkitLocalStorageReader` folder then `libsqlite3.tbd` (tip: search for sql and make sure you add libsqlite3.tbd and NOT libsqlite3.0.tbd). [(Screenshot)](http://url.brentvatne.ca/17Xfe).
 
 4. Whenever you want to use it within React code now you just have to do: `var WebkitLocalStorageReader = require('NativeModules').WebkitLocalStorageReader;`
 

@@ -4,7 +4,7 @@
   "description": "A react-native wrapper for reading existing localstorage created by apps built with cordova/phonegap.",
   "author": {
     "name": "Tom Krones",
-    "email": "tkrones@gmail.com",
+    "email": "tkrones@gmail.com"
   },
   "repository": {
     "type": "git",

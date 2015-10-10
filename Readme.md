@@ -20,7 +20,7 @@ This module reads the localstorage file stored in the `Library/WebKit/LocalStora
 
 ### Add it to your project
 
-1. Run `npm install git+https://git@github.com/wootwoot1234/react-native-webkit-localstorage-reader.git --save`.
+1. Run `npm install react-native-webkit-localstorage-reader --save`.
 
 2. Open your project in XCode, right click on `Libraries`, click `Add Files to "Your Project Name"` and add `WebkitLocalStorageReader.xcodeproj`. (situated in `node_modules/react-native-webkit-localstorage-reader`) [(This](http://url.brentvatne.ca/jQp8) then [this](http://url.brentvatne.ca/1gqUD), just with WebkitLocalStorageReader).
 

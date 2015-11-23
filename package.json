@@ -1,7 +1,7 @@
 {
   "name": "react-native-webkit-localstorage-reader",
   "version": "1.0.0",
-  "description": "A react-native wrapper for reading existing localstorage created by apps built with cordova/phonegap.",
+  "description": "A react-native wrapper for reading existing localstorage databases created by apps built with cordova/phonegap.",
   "author": "Tom Krones <tkrones@gmail.com>",
   "repository": {
     "type": "git",
@@ -16,9 +16,7 @@
     "locastorage",
     "sqlite"
   ],
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "license": "ISC"
+  "peerDependencies": {
+    "react-native": "*"
+  }
 }

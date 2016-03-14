@@ -66,15 +66,17 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
                     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:myData
                                                                          options:kNilOptions
                                                                            error:&error];
-                    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-                    NSString* jsonString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-
-                    if([jsonStringMaster length] != 0) {
-                        jsonStringMaster = [jsonStringMaster stringByAppendingString:@","];
+                    if (json != nil) {
+                        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+                        NSString* jsonString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
+                        
+                        if([jsonStringMaster length] != 0) {
+                            jsonStringMaster = [jsonStringMaster stringByAppendingString:@","];
+                        }
+                        NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString,jsonString];
+                        jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
+                        //NSLog(jsonStringMaster);
                     }
-                    NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString,jsonString];
-                    jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
-                    //NSLog(jsonStringMaster);
                 }
                 sqlite3_finalize(stmt);
             }

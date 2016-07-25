@@ -4,6 +4,9 @@ A react-native wrapper for reading existing localstorage created by apps built w
 
 ## How it works
 
+### Note: 
+This module curretly only supports values stored as JSON objects.  Pull requests are welcome if you would like this module to support other value types such as string.
+
 This module reads the localstorage file stored in the `Library/WebKit/LocalStorage/file__0.localstorage` folder.  It cycles through all the entries and compiles the keys and values into a json object.  The json object is then converted into a string and returned by the ```get()``` method.  Below is the format of the json object that is returned as a string.
 
 ```javascript
@@ -36,7 +39,7 @@ This module reads the localstorage file stored in the `Library/WebKit/LocalStora
 You have to load the products first to get the correctly internationalized name and price in the correct currency.
 
 ```javascript
-var WebkitLocalStorageReader = require('NativeModules').WebkitLocalStorageReader;
+import {WebkitLocalStorageReader} from 'NativeModules';
 WebkitLocalStorageReader.get((jsonString) => {
     if(jsonString) {
         var jsonObj = JSON.parse(jsonString);

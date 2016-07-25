@@ -21,12 +21,10 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
 
     NSString *databaseFile = [databasePath
                                  stringByAppendingPathComponent:databaseName];
-
-    BOOL webkitDb;
-
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    webkitDb = [fileManager fileExistsAtPath:databaseFile];
+    
+    BOOL webkitDb = [fileManager fileExistsAtPath:databaseFile];
 
     if (webkitDb) {
 
@@ -55,27 +53,28 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
                     // Get key text
                     const char *key = (const char *)sqlite3_column_text(stmt, 0);
                     NSString *keyString =[[NSString alloc] initWithUTF8String:key];
-                    //NSLog(keyString);
-
 
                     // Get value as NSDictionary
                     const void *bytes = sqlite3_column_blob(stmt, 1);
                     int length = sqlite3_column_bytes(stmt, 1);
                     NSData *myData = [[NSData alloc] initWithBytes:bytes length:length];
+                    
                     NSError* error;
                     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:myData
                                                                          options:kNilOptions
                                                                            error:&error];
-                    if (json != nil) {
+                    if(json) {
                         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
                         NSString* jsonString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-                        
+
                         if([jsonStringMaster length] != 0) {
                             jsonStringMaster = [jsonStringMaster stringByAppendingString:@","];
                         }
                         NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString,jsonString];
                         jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
-                        //NSLog(jsonStringMaster);
+                    } else {
+                        NSLog(@"The value stored in the localstorage key: %@, was not a JSON object and will not be returned.", keyString);
+                        NSLog(@"Note: Currently, this code only supports JSON objects stored as strings in the local database. If you want to modify this code to support other value types please submit a pull request on github.");
                     }
                 }
                 sqlite3_finalize(stmt);

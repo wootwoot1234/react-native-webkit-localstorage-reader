@@ -63,6 +63,8 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
                     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:myData
                                                                          options:kNilOptions
                                                                            error:&error];
+                    NSString *string = [[NSString alloc] initWithData:myData encoding:NSUTF16LittleEndianStringEncoding];
+                    
                     if(json) {
                         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
                         NSString* jsonString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
@@ -71,6 +73,12 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
                             jsonStringMaster = [jsonStringMaster stringByAppendingString:@","];
                         }
                         NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString,jsonString];
+                        jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
+                    } else if(string) {
+                        if([jsonStringMaster length] != 0) {
+                            jsonStringMaster = [jsonStringMaster stringByAppendingString:@","];
+                        }
+                        NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString, string];
                         jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
                     } else {
                         NSLog(@"The value stored in the localstorage key: %@, was not a JSON object and will not be returned.", keyString);

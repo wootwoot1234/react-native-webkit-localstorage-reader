@@ -81,8 +81,8 @@ RCT_EXPORT_METHOD(get:(RCTResponseSenderBlock)callback)
                         NSString* jsonStringWithKey = [NSString stringWithFormat:@"\"%@\":%@", keyString, string];
                         jsonStringMaster = [jsonStringMaster stringByAppendingString:jsonStringWithKey];
                     } else {
-                        NSLog(@"The value stored in the localstorage key: %@, was not a JSON object and will not be returned.", keyString);
-                        NSLog(@"Note: Currently, this code only supports JSON objects stored as strings in the local database. If you want to modify this code to support other value types please submit a pull request on github.");
+                        NSLog(@"The value stored in the localstorage key: %@, was not a string or JSON object and will not be returned.", keyString);
+                        NSLog(@"Note: Currently, this code only supports strings and JSON objects stored as strings in the local database. If you want to modify this code to support other value types please submit a pull request on github.");
                     }
                 }
                 sqlite3_finalize(stmt);

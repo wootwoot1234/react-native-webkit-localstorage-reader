@@ -2,12 +2,9 @@
 
 A react-native wrapper for reading existing localstorage created by apps built with cordova/phonegap.  This is useful if you built an app in cordova/phonegap (a webkit app) and now want access the localstorage from previous versions of the app in react native.
 
-### Note: 
-This module curretly only supports values stored as strings or JSON objects.  Pull requests are welcome if you would like this module to support other value types such as string.
-
 ## How it works
 
-This module reads the localstorage file stored in the `Library/WebKit/LocalStorage/file__0.localstorage` folder.  It cycles through all the entries and compiles the keys and values into a json object.  The json object is then converted into a string and returned by the ```get()``` method.  Below is the format of the json object that is returned as a string.
+This module reads the localstorage file stored in `Library/WebKit/LocalStorage/file__0.localstorage` for iOS and `app_webview/Local Storage/file__0.localstorage` for Android.  It cycles through all the entries and compiles the keys and values into a json object. 
 
 ```javascript
 {
@@ -21,7 +18,7 @@ This module reads the localstorage file stored in the `Library/WebKit/LocalStora
 
 ## Installation
 
-### Add it to your project
+### iOS
 
 1. Run `npm install react-native-webkit-localstorage-reader --save`.
 
@@ -32,22 +29,49 @@ This module reads the localstorage file stored in the `Library/WebKit/LocalStora
 4. Whenever you want to use it within React code now you just have to do: `var WebkitLocalStorageReader = require('NativeModules').WebkitLocalStorageReader;`
 
 
+### Android
+
+- Add the following lines to `android/settings.gradle`:
+
+```
+include ':react-native-webkit-localstorage-reader'
+project(':react-native-webkit-localstorage-reader').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webkit-localstorage-reader/android')
+```
+
+- Update your `dependencies` in `android/app/build.gradle` with:
+
+```
+dependencies {
+  ...
+  compile project(':react-native-webkit-localstorage-reader')
+}
+ ```
+  
+- Be sure to have new WebkitLocalStorageReaderPackage() in your MainApplication.java 
+
+```
+import io.github.wootwoot1234.WebkitLocalStorageReaderPackage;
+...
+@Override
+     protected List<ReactPackage> getPackages() {
+         return Arrays.<ReactPackage>asList(
+                 new MainReactPackage(),
+                 new WebkitLocalStorageReaderPackage()
+         );
+     }
+```
+
+
 ## API
 
 ### Read Localstorage
 
-You have to load the products first to get the correctly internationalized name and price in the correct currency.
-
 ```javascript
-import {WebkitLocalStorageReader} from 'NativeModules';
-WebkitLocalStorageReader.get((jsonString) => {
-    if(jsonString) {
-        var jsonObj = JSON.parse(jsonString);
-        console.log(jsonObj);
-    } else {
-        console.log("No localstorage database file found.");
-    }
-});
+// you have session => { SESSION } in your localstorage
+import { WebkitLocalStorageReader } from 'NativeModules';
+
+const localStorage = await WebkitLocalStorageReader.get();
+const session = JSON.parse(localStorage.session);
 ```
 
 ## Testing

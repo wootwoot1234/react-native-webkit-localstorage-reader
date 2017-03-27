@@ -2,6 +2,9 @@
 
 A react-native wrapper for reading existing localstorage created by apps built with cordova/phonegap.  This is useful if you built an app in cordova/phonegap (a webkit app) and now want access the localstorage from previous versions of the app in react native.
 
+### BREAKING CHANGES: 
+Version 2.0 added Android support and the returned value is not a string, but an object. This is the same object you would get when using localStorage from a web browser.
+
 ### Note: 
 This module curretly only supports values stored as strings or JSON objects.  Pull requests are welcome if you would like this module to support other value types such as string.
 

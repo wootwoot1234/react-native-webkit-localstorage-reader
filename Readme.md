@@ -74,7 +74,6 @@ import io.github.wootwoot1234.WebkitLocalStorageReaderPackage;
 import { WebkitLocalStorageReader } from 'NativeModules';
 
 const localStorage = await WebkitLocalStorageReader.get();
-const session = JSON.parse(localStorage.session);
 ```
 
 ## Testing

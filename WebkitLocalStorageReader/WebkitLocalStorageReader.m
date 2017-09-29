@@ -16,14 +16,23 @@ RCT_EXPORT_METHOD(get:(RCTPromiseResolveBlock)resolve
 
     // Acording to this link, the database might be located in the cache folder but it wasn't for me.
     //https://gist.github.com/shazron/2127546
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
     NSString *databasePath = [libraryDir
-                              stringByAppendingPathComponent:@"WebKit/LocalStorage/"];
-    //stringByAppendingPathComponent:@"Caches/"];
+                              stringByAppendingPathComponent:@"WebKit/WebsiteData/LocalStorage/"];
+    
+    if (![fileManager fileExistsAtPath:[databasePath stringByAppendingPathComponent:databaseName]]) {
+        databasePath = [libraryDir
+                        stringByAppendingPathComponent:@"WebKit/LocalStorage/"];
+        if (![fileManager fileExistsAtPath:[databasePath stringByAppendingPathComponent:databaseName]]) {
+            databasePath = [libraryDir
+                            stringByAppendingPathComponent:@"Caches/"];
+        }
+    }
 
     NSString *databaseFile = [databasePath
                               stringByAppendingPathComponent:databaseName];
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
 
     BOOL webkitDb = [fileManager fileExistsAtPath:databaseFile];
 
